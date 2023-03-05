@@ -24,6 +24,22 @@ public class ProductService {
 		});
 		return products;
 	}
+	
+	public void createNewProduct(ProductDTO dto) {
+		this.productRepository.persist(mapCustomerDTOToModel(dto));
+	}
+	
+	private ProductEntity mapCustomerDTOToModel(ProductDTO dto) {
+		ProductEntity model = new ProductEntity();
+
+		model.setName(dto.getName());
+		model.setDescription(dto.getDescription());
+		model.setCategory(dto.getCategory());
+		model.setPrice(dto.getPrice());
+		model.setModel(dto.getModel());
+
+		return model;
+	}
 
 	private ProductDTO mapCustomerEntityToDTO(ProductEntity entity) {
 		ProductDTO dto = new ProductDTO();
