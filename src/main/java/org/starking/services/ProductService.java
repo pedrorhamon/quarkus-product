@@ -29,6 +29,22 @@ public class ProductService {
 		this.productRepository.persist(mapCustomerDTOToModel(dto));
 	}
 	
+	public void changeProduct(Long id, ProductDTO dto) {
+		ProductEntity entity = this.productRepository.findById(id);
+		
+		entity.setName(dto.getName());
+		entity.setDescription(dto.getDescription());
+		entity.setCategory(dto.getCategory());
+		entity.setPrice(dto.getPrice());
+		entity.setModel(dto.getModel());
+		
+		this.productRepository.persist(entity);
+	}
+	
+	public void deleteProduct(Long id) {
+		this.productRepository.deleteById(id);
+	}
+	
 	private ProductEntity mapCustomerDTOToModel(ProductDTO dto) {
 		ProductEntity model = new ProductEntity();
 
