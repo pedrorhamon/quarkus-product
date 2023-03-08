@@ -42,6 +42,7 @@ public class ProductController {
 	}
 	
 	@PUT
+	@Path("/{id}")
 	@Transactional
 	public Response changeProduct(@PathParam("id") Long id, ProductDTO dto) {
 		try {
@@ -54,8 +55,9 @@ public class ProductController {
 	}
 	
 	@DELETE
+	@Path("/{id}")
 	@Transactional
-	public Response deleteProduct(Long id) {
+	public Response deleteProduct(@PathParam("id") Long id) {
 		try {
 			this.productService.deleteProduct(id);
 			return Response.accepted().build();
